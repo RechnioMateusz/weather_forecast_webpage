@@ -1,6 +1,16 @@
-# Project specific
+# ========================= Project specific ==================================
+
+# VisualStudioCode workspace settings
 .vscode
+
+# Pylint configuration file
 .pylintrc
+
+# Everything from migrations folders except __init__.py
+migrations/
+!migrations/__init__.py
+
+# =============================================================================
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

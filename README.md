@@ -15,3 +15,8 @@ To run test server use:
 ```bash
 source run_server.sh
 ```
+
+To add some data go to _http://127.0.0.1:8000/admin/_ and create new
+user, profile, device and data.
+
+**TODO**: CREATE SCRIPT MOCKING DATA
