@@ -1,8 +1,10 @@
 """Views for device application."""
 
 from django.shortcuts import render
+from rest_framework import viewsets
 
-from .models import Device
+from .models import Device, Data
+from .serializers import DeviceSerializer, DataSerializer
 
 
 def main_view(request):
@@ -20,3 +22,13 @@ def main_view(request):
             "profiles": Device.objects.all()
         }
     )
+
+class DeviceViewSet(viewsets.ModelViewSet):
+    queryset = Device.objects.all()
+    serializer_class = DeviceSerializer
+
+class DataViewSet(viewsets.ModelViewSet):
+    serializer_class = DataSerializer
+
+    def get_queryset(self):
+        return Data.objects.filter(device=self.kwargs['device_pk'])

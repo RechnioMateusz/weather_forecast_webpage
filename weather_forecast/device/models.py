@@ -13,23 +13,24 @@ class Device(models.Model):
         :localization: Device localization. [django.db.models.CharField]
         :device: Device type. [django.db.models.CharField]
     """
+    DEVICE_CHOICES = [
+        ("RPi 4B", "Raspberry Pi 4 model B"),
+        ("RPi 3A+", "Raspberry Pi 3 model A+"),
+        ("RPi 3B+", "Raspberry Pi 3 model B+"),
+        ("RPi 3B", "Raspberry Pi 3 model B"),
+        ("RPi 2B", "Raspberry Pi 2 model B"),
+        ("RPi 1B+", "Raspberry Pi 1 model B+"),
+        ("RPi 1A+", "Raspberry Pi 1 model A+"),
+        ("RPi 0W", "Raspberry Pi Zero W"),
+        ("RPi 0", "Raspberry Pi Zero"),
+    ]
 
     user = models.ForeignKey(to="user.Profile", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, unique=True)
     localization = models.CharField(max_length=100)
     device = models.CharField(
         max_length=10,
-        choices=[
-            ("RPi 4B", "Raspberry Pi 4 model B"),
-            ("RPi 3A+", "Raspberry Pi 3 model A+"),
-            ("RPi 3B+", "Raspberry Pi 3 model B+"),
-            ("RPi 3B", "Raspberry Pi 3 model B"),
-            ("RPi 2B", "Raspberry Pi 2 model B"),
-            ("RPi 1B+", "Raspberry Pi 1 model B+"),
-            ("RPi 1A+", "Raspberry Pi 1 model A+"),
-            ("RPi 0W", "Raspberry Pi Zero W"),
-            ("RPi 0", "Raspberry Pi Zero"),
-        ]
+        choices=DEVICE_CHOICES
     )
 
     def __str__(self):
