@@ -76,7 +76,7 @@ class Command(BaseCommand):
         self.device_id = options.pop("device_id")
         self.endpoint = options.pop("endpoint")
 
-        if not Device.objects.filter(id=self.device_id).first():
+        if not Device.objects.filter(id=self.device_id).exists():
             raise CommandError(
                 f"Invalid device ID. Possible devices: {Device.objects.all()}"
             )
@@ -88,6 +88,7 @@ class Command(BaseCommand):
             self.style.SUCCESS(f"Starting device {self.device_id} mock")
         )
 
+        timer = 0
         while True:
             try:
                 time.sleep(1)
@@ -97,3 +98,8 @@ class Command(BaseCommand):
                     self.style.SUCCESS(f"Stoping device {self.device_id} mock")
                 )
                 break
+            else:
+                timer += 1
+                if timer == 60:
+                    self.stdout.write(self.style.SUCCESS("I'M ALIVE"))
+                    timer = 0
