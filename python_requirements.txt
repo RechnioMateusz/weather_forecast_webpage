@@ -1,7 +1,7 @@
 asgiref==3.2.3
 astroid==2.3.3
 Django==3.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 django-extensions==2.2.8
 drf-nested-routers==0.91
 isort==4.3.21
